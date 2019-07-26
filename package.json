@@ -19,7 +19,7 @@
     "node.js",
     "bcryptjs"
   ],
-  "author": "Fatima Gomez <fatima3558@gmail.com>", "Pavitra Brahmbhatt <brahmbhattpavitra@gmail.com>"
+  "author": "Fatima Gomez <fatima3558@gmail.com> and Pavitra Brahmbhatt <brahmbhattpavitra@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
