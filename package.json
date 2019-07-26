@@ -1,0 +1,33 @@
+{
+  "name": "couch-potato",
+  "version": "1.0.0",
+  "description": "A Movie Rating App",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "movies",
+    "ratings",
+    "film",
+    "mvc",
+    "express",
+    "node",
+    "mongoose",
+    "mongodb",
+    "ejs",
+    "node.js",
+    "bcryptjs"
+  ],
+  "author": "Fatima Gomez <fatima3558@gmail.com>", "Pavitra Brahmbhatt <brahmbhattpavitra@gmail.com>"
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "ejs": "^2.6.2",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.6.7"
+  }
+}
