@@ -15,6 +15,9 @@ router.get("/login", (req, res, next) => {
 })
 
 //register
+router.get("/register", (req, res, next) => {
+	res.render("users/register.ejs")
+})
 
 //logout
 
