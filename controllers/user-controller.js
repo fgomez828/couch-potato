@@ -6,10 +6,7 @@ const User = require("../models/user")
 /**AUTHENTICATION**/
 //login
 router.get("/", (req, res, next) => {
-	if(err) next(err);
-	else {
-		res.render("users/login.ejs")
-	}
+	res.render("users/login.ejs")
 })
 
 //register
