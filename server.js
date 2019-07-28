@@ -1,6 +1,5 @@
 //require modules
 const express = require("express")
-const ejs = require("ejs")
 const bodyParser = require("body-parser")
 const methodOverride = require("method-override")
 const session = require("express-session")
@@ -10,6 +9,20 @@ const app = express()
 
 //require db
 require("./db/db")
+
+//middleware
+app.use(bodyParser.urlencoded({extended:false}))
+app.use(methodOverride("_method"))
+app.use(session({
+	secret: "eGpqKoyWC913mBHZKrqo",
+	resave: false,
+	saveUninitialized: false
+}))
+
+
+//controllers
+const userController = require("./controllers/user-controller")
+app.use("/auth", userController)
 
 app.listen(PORT, () => {
 	console.log("listening on port ", PORT);
