@@ -3,9 +3,14 @@ const router = express.Router()
 
 const User = require("../models/user")
 
+//index
+router.get("/", (req, res, next) => {
+	res.redirect("/user/login")
+})
+
 /**AUTHENTICATION**/
 //login
-router.get("/", (req, res, next) => {
+router.get("/login", (req, res, next) => {
 	res.render("users/login.ejs")
 })
 
