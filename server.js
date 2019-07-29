@@ -22,7 +22,10 @@ app.use(session({
 
 //controllers
 const userController = require("./controllers/user-controller")
-app.use("/auth", userController)
+app.use("/user", userController)
+
+const movieReviewController = require("./controllers/movieReviewController")
+app.use("/movie", movieReviewController)
 
 app.listen(PORT, () => {
 	console.log("listening on port ", PORT);

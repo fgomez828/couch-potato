@@ -3,18 +3,13 @@ const router = express.Router()
 
 const User = require("../models/user")
 
-/**AUTHENTICATION**/
-//login
+
+//movie home page
 router.get("/", (req, res, next) => {
-	if(err) next(err);
-	else {
-		res.render("users/login.ejs")
-	}
+	res.render("users/login.ejs")
 })
 
-//register
 
-//logout
 
 /**REST**/
 //show 
