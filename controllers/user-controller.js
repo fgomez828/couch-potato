@@ -4,6 +4,7 @@ const router = express.Router()
 
 const User = require("../models/user")
 
+
 //index
 router.get("/", (req, res, next) => {
 	res.render("users/login.ejs",)
@@ -47,7 +48,6 @@ router.post("/new", async (req, res, next) => {
 	}
 })
 
-//logout
 
 
 /**REST**/
