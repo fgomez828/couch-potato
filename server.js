@@ -19,6 +19,19 @@ app.use(session({
 	saveUninitialized: false
 }))
 
+app.use((req, res, next) => {
+	try {
+		if(req.session.loggedIn) {
+			res.locals.user = req.session.user
+		} else {
+			res.locals.user = undefined
+		}
+		next()// 
+	} catch(err) {
+		next(err)
+	}
+})
+
 
 //controllers
 const userController = require("./controllers/user-controller")

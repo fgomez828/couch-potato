@@ -20,10 +20,13 @@ router.post("/login", async (req, res, next) => {
 		//check password
 		if(bcrypt.compareSync(req.body.password, existingUser.password)) {
 			//set session
+			req.session.user = existingUser
 			req.session.userId = existingUser._id
 			req.session.username = existingUser.name
 			req.session.loggedIn = true
-			res.redirect("/movies")
+
+			res.redirect("/movies/feed")
+
 		} else {
 			req.session.message = "Wrong Password"
 			res.redirect("/user")
@@ -52,11 +55,14 @@ router.post("/new", async (req, res, next) => {
 			//create user
 			const newUser = await User.create(req.body)
 			//set session
+			req.session.user = newUser
 			req.session.userId = newUser._id
 			req.session.username = newUser.name
 			req.session.loggedIn = true
 			// redirect
-			res.redirect("/movies")
+
+			res.redirect("/movies/feed")
+
 		} else {
 			req.session.message = "That username already exists. Try another one."
 			res.redirect("/user/register")
@@ -76,7 +82,14 @@ router.get("/logout", (req, res, next) => {
 
 
 /**REST**/
-//show
+// show
+router.get("/:_id", (req, res, next) => {
+	console.log("hitting user show route");
+	res.render("users/show.ejs", {
+		user: req.session.user,
+		userName: req.session.user.name
+	})
+})
 
 //edit -- to edit own profile
 
@@ -85,3 +98,5 @@ router.get("/logout", (req, res, next) => {
 //delete -- to delete own account
 
 module.exports = router
+
+
