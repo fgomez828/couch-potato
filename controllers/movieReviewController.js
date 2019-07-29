@@ -36,12 +36,6 @@ router.get('/', (req, res, next) => {
         const date = dataAsObj.Released
         const description = dataAsObj.Genre
 
-        res.render('weather/show.ejs', {
-          zip: zip,
-          temp: temp,
-          weatherStr: weatherStr,
-          location: location
-        })
       }
     })
 

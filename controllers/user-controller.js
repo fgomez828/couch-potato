@@ -23,7 +23,7 @@ router.post("/login", async (req, res, next) => {
 			req.session.userId = existingUser._id
 			req.session.username = existingUser.name
 			req.session.loggedIn = true
-			res.redirect("/movie")
+			res.redirect("/movies")
 		} else {
 			req.session.message = "Wrong Password"
 			res.redirect("/user")
@@ -56,7 +56,7 @@ router.post("/new", async (req, res, next) => {
 			req.session.username = newUser.name
 			req.session.loggedIn = true
 			// redirect
-			res.redirect("/movie")
+			res.redirect("/movies")
 		} else {
 			req.session.message = "That username already exists. Try another one."
 			res.redirect("/user/register")
