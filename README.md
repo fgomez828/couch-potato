@@ -27,8 +27,7 @@ o	User should be able to choose a username, password and avatar (upload image or
 •	User should be able to click on movies/ users on the feed and go to their respective pages
 
 
-Dates to reviews
-Bio to person
+
 
 
 •	Secondary goals
@@ -38,6 +37,7 @@ Bio to person
 •	User bio 
 •	Potato logo?
 
+Wireframes - click link to access
 ![alt text](./wireframes/wire1.pdf)
 ![alt text](./wireframes/wire2.pdf)
 ![alt text](./wireframes/wire3.pdf)
