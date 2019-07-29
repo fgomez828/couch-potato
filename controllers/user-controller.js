@@ -7,13 +7,30 @@ const User = require("../models/user")
 
 //index
 router.get("/", (req, res, next) => {
-	res.render("users/login.ejs",)
+	res.render("users/login.ejs", {
+		message: req.session.message
+	})
 })
 
 /**AUTHENTICATION**/
 //login
-router.post("/login", (req, res, next) => {
-	res.send("check once registration is complete")
+router.post("/login", async (req, res, next) => {
+	try {
+		const existingUser = await User.findOne({name: req.body.name})
+		//check password
+		if(bcrypt.compareSync(req.body.password, existingUser.password)) {
+			//set session
+			req.session.userId = existingUser._id
+			req.session.username = existingUser.name
+			req.session.loggedIn = true
+			res.redirect("/movie")
+		} else {
+			req.session.message = "Wrong Password"
+			res.redirect("/user")
+		}
+	} catch(err) {
+		next(err)
+	}
 })
 
 //register
@@ -25,8 +42,8 @@ router.get("/register", (req, res, next) => {
 
 //new
 router.post("/new", async (req, res, next) => {
-	const duplicateUser = await User.find({name: req.body.name})
 	try {
+		const duplicateUser = await User.findOne({name: req.body.name})
 		if(!duplicateUser) {
 			//secure password
 			const password = req.body.password
@@ -39,7 +56,7 @@ router.post("/new", async (req, res, next) => {
 			req.session.username = newUser.name
 			req.session.loggedIn = true
 			// redirect
-			res.send("created account successfully")
+			res.redirect("/movie")
 		} else {
 			req.session.message = "That username already exists. Try another one."
 			res.redirect("/user/register")
@@ -49,17 +66,13 @@ router.post("/new", async (req, res, next) => {
 	}
 })
 
-//seed database
-// router.get("/seeddb", (req, res, next) => {
-// 	User.create({
-// 		name: "admin",
-// 		password: "admin-sei3chi"
-// 	})
-// 	res.redirect("/user")
-// })
-
 //logout
-
+router.get("/logout", (req, res, next) => {
+	req.session.destroy((err) => {
+		if(err) next(err);
+		else res.redirect("/user")
+	})
+})
 
 
 /**REST**/

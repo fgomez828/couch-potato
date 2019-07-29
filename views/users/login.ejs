@@ -5,8 +5,9 @@
 </head>
 <body>
 	<h1>LOGIN PAGE</h1>
+	<h3><%=message%></h3>
 	<a href="/user/register">Don't have an account? Get one here!</a>
-	<form action="" method="POST">
+	<form action="/user/login" method="POST">
 		Username: <input type="text" name="name" /> <br/>
 		Password: <input type="password" name="password" /> <br/>
 		<button>Log In</button>
