@@ -38,8 +38,7 @@ Bio to person
 •	User bio 
 •	Potato logo?
 
-![alt text](./wireframes/wireframes.jpg)
-![alt text](./wireframes/wireframes1.jpg)
-![alt text](./wireframes/wireframes2.jpg)
-![alt text](./wireframes/wireframes3.jpg)
-![alt text](./wireframes/wireframes4.jpg)
+![alt text](./wireframes/wire1.pdf)
+![alt text](./wireframes/wire2.pdf)
+![alt text](./wireframes/wire3.pdf)
+![alt text](./wireframes/wire4.pdf)
