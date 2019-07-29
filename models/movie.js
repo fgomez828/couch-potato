@@ -6,6 +6,9 @@ const Movie = new mongoose.model("Movie", mongoose.Schema({
 		required: true
 
 	},
+	date:{
+		type:String
+	},
 	description: {
 		type: String,
 		required: true
