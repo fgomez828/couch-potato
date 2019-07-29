@@ -5,8 +5,9 @@
 </head>
 <body>
 	<h1>REGISTER FOR AN ACCOUNT</h1>
-	<a href="/user/login">Already have an account? Log in here!</a>
-	<form action="" method="POST">
+	<a href="/user">Already have an account? Log in here!</a>
+	<h3><%=message%></h3>
+	<form action="/user/new" method="POST">
 		Username: <input type="text" name="name" /> <br/>
 		Password: <input type="password" name="password" /> <br/>
 		Avatar: <input type="file" name="avatar"> <br/>
