@@ -25,9 +25,9 @@ router.get("/register", (req, res, next) => {
 
 //new
 router.post("/new", async (req, res, next) => {
-	// const duplicateUser = await User.find({name: req.body.name})
+	const duplicateUser = await User.find({name: req.body.name})
 	try {
-		// if(!duplicateUser) {
+		if(!duplicateUser) {
 			//secure password
 			const password = req.body.password
 			const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
@@ -40,13 +40,25 @@ router.post("/new", async (req, res, next) => {
 			req.session.loggedIn = true
 			// redirect
 			res.send("created account successfully")
-		// } else {
-			// req.session.message = "That username already exists. Try another one."
-		// }
+		} else {
+			req.session.message = "That username already exists. Try another one."
+			res.redirect("/user/register")
+		}
 	} catch(err) {
 		next(err)
 	}
 })
+
+//seed database
+// router.get("/seeddb", (req, res, next) => {
+// 	User.create({
+// 		name: "admin",
+// 		password: "admin-sei3chi"
+// 	})
+// 	res.redirect("/user")
+// })
+
+//logout
 
 
 
