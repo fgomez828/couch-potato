@@ -13,5 +13,11 @@
 		Confirm Password: <input type="password" name="password"><br/>
 		<button>Update Account</button>
 	</form>
+	<br/>
+	<br/>
+	<form action="/user/<%=user._id%>?_method=DELETE" method="POST">
+		Or... <br/>
+		<button>Delete Account</button>
+	</form>
 </body>
 </html>

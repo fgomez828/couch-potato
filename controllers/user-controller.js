@@ -131,9 +131,10 @@ router.put("/:id", async (req, res, next) => {
 			// console.log("password matches!");
 			req.session.message = "Profile updated!"
 			res.redirect("/user/" + req.session.user._id)
-
-		//if password to confirm changes does not match, do not change
+			//save all changes to db
 			updatedUser.save()
+		//if password to confirm changes does not match, do not change
+			
 		} else {
 			// console.log("password does not match");
 			req.session.message = "Wrong password - could not update profile"
@@ -145,6 +146,14 @@ router.put("/:id", async (req, res, next) => {
 })
 
 //delete -- to delete own account
+router.delete("/:id", async (req, res, next) => {
+	try {
+		await User.findByIdAndDelete(req.params.id)
+		res.redirect("/user/register")
+	} catch(err) {
+		next(err)
+	}
+})
 
 module.exports = router
 
