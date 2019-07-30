@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h1>Edit Your Profile</h1>
+	<form action="/user/<%=user.id%>" method="POST">
+		Username: <input type="text" name="name" value="<%=user.name%>"/> <br/>
+		New Password: <input type="password" name="newPassword" /> <br/>
+		Avatar: <input type="file" name="avatar"> <br/>
+
+		Confirm Password: <input type="password" name="password">
+		<button>Update Account</button>
+	</form>
+</body>
+</html>

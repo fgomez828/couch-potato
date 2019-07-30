@@ -83,15 +83,15 @@ router.get("/logout", (req, res, next) => {
 
 /**REST**/
 // show
-router.get("/:_id", (req, res, next) => {
-	console.log("hitting user show route");
-	res.render("users/show.ejs", {
-		user: req.session.user,
-		userName: req.session.user.name
-	})
+router.get("/:id", (req, res, next) => {
+	// console.log("hitting user show route");
+	res.render("users/show.ejs")
 })
 
 //edit -- to edit own profile
+router.get("/:id/edit", (req, res, next) => {
+	res.render("users/edit.ejs")
+})
 
 //update -- to update own profile
 
