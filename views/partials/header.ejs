@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Couch Potato</a>
+  <a class="navbar-brand" href="/movies/feed">Couch Potato</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -9,10 +9,10 @@
     <% if (user) { %>
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Movies <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="/movies">Movies <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Users</a>
+          <a class="nav-link" href="#">Users</a> 
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,7 +32,7 @@
     <% } %>
     <form class="form-inline my-2 my-lg-0" action="/movies" method="GET">
       <input class="form-control mr-sm-2" type="text" name="name" placeholder="Search" aria-label="Search">
->>>>>>> c37af252486dc0957d542d325429d9140d8ba109
+
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>

@@ -6,6 +6,7 @@ const Movie = require("../models/movie")
 
 router.use(requireAuth)
 
+//show
  router.get('/', (req, res, next) => {
 //     const url = 'http://www.omdbapi.com/?t='+ req.body.name + '&apikey='+ process.env.API_KEY
 //     console.log(url);
@@ -27,7 +28,8 @@ router.use(requireAuth)
 //         const description = dataAsObj.Genre
 //       }
 //     })
-	res.redirect("/movies/feed")
+	console.log(" movie show route");
+	res.redirect("movies/movieIndex")
 
 	// res.render('movies/show.ejs', {
           // name: name,
@@ -42,4 +44,27 @@ router.get("/feed", (req, res, next) => {
 	res.render("reviews/feed.ejs")
 })
 
+router.get("/movieIndex", (req,res,next) => {
+	res.render("movies/index.ejs")
+})
+
+router.get("/create", (req,res,next) => {
+	res.render("reviews/new.ejs")
+})
+
+router.get("/edit", (req,res,next) => {
+	res.render("reviews/edit.ejs")
+})
+
+
+
+
 module.exports = router
+
+
+
+
+
+
+
+
