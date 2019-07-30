@@ -1,21 +1,23 @@
 const mongoose = require("mongoose")
 
 const Movie = new mongoose.model("Movie", mongoose.Schema({
-	name: {
+	title: {
 		type: String,
 		required: true
 
 	},
-	date:{
+	year:{
 		type:String
 	},
-	description: {
+	genre: {
 		type: String,
 		required: true
 	},
-	image: {
-		type: Buffer,
-		data: String
+	poster: {
+		type: String,
+	},
+	plot: {
+		type: String
 	}
 }))
 

@@ -4,14 +4,19 @@
 
     <form action="/movies" method="GET">
       Enter a movie name to see the info for that movie<br>
-      <input type="text" name="movieTitle">
+      <input type="text" name="title">
       <button>Submit</button>
     </form>
 
-  <h2>Movie Title: <%= name %>:</h2>
-  <h3>Released: <%= date %>°F</h3>
-  <h3>Genre: <%= decription %></h3>
+    <h2>Movie Title: <%= title %></h2>
 
+
+    <img src="<%=poster%>">
+    
+
+    <h3>Released: <%= year %></h3>
+    <h3>Genre: <%= genre %></h3>
+    <h3>Plot: <%= plot %></h3>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

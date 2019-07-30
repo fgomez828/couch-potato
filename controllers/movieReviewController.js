@@ -8,36 +8,43 @@ router.use(requireAuth)
 
 //show
  router.get('/', (req, res, next) => {
-//     const url = 'http://www.omdbapi.com/?t='+ req.body.name + '&apikey='+ process.env.API_KEY
-//     console.log(url);
-//     //use superagent to request api data
-//     superagent
-//     .get(url)
-//     .end((error, response) => {
-//       if(error) next(error);
-//       else {
-//         // console.dir(response) // <-- format of this response will vary WIDELY depending on the API you're working with
-//         // console.dir(response.text); // <-- this appears to be the JSON we want
-//         // so we must JSON.parse it
-//         const dataAsObj = JSON.parse(response.text)
-//         console.dir(dataAsObj)
+ 	const value = "Mean Girls"
+    const url = 'http://www.omdbapi.com/?t='+ value + '&apikey='+ process.env.API_KEY
+    console.log(url);
+    //use superagent to request api data
+    superagent
+    .get(url)
+    .end((error, response) => {
+      if(error) next(error);
+      else {
+         console.dir(response) // <-- format of this response will vary WIDELY depending on the API you're working with
+         console.dir(response.text); // <-- this appears to be the JSON we want
+      
+        const dataAsObj = JSON.parse(response.text)
+        console.dir(dataAsObj)
 
-//         // we could crunch data here or in template or both
-//         const name = dataAsObj.main.Title
-//         const date = dataAsObj.Released
-//         const description = dataAsObj.Genre
-//       }
-//     })
-	console.log(" movie show route");
-	res.redirect("movies/movieIndex")
+  
+        const title = dataAsObj.Title
+        const year = dataAsObj.Year
+        const genre = dataAsObj.Genre
+		    const poster = dataAsObj.Poster
+		    const plot = dataAsObj.Plot
 
-	// res.render('movies/show.ejs', {
-          // name: name,
-          // date: date,
-          // description: decription,
+      
+    
+	     console.log(" movie show route");
+	     //res.redirect("movies/")
 
-          //image: image
-        // })
+    	res.render('movies/show.ejs', {
+        title: title,
+        year: year,
+        genre: genre,
+        poster: poster,
+        plot: plot
+
+      })
+    }
+  })
 })
 
 router.get("/feed", (req, res, next) => {
@@ -55,6 +62,10 @@ router.get("/create", (req,res,next) => {
 router.get("/edit", (req,res,next) => {
 	res.render("reviews/edit.ejs")
 })
+
+router.get("/:id", ((req,res,next) => {
+  res.render("movies/show.ejs")
+}))
 
 
 
