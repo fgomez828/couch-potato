@@ -85,15 +85,64 @@ router.get("/logout", (req, res, next) => {
 // show
 router.get("/:id", (req, res, next) => {
 	// console.log("hitting user show route");
-	res.render("users/show.ejs")
+	res.render("users/show.ejs", {
+		message: req.session.message
+	})
 })
 
 //edit -- to edit own profile
 router.get("/:id/edit", (req, res, next) => {
-	res.render("users/edit.ejs")
+	res.render("users/edit.ejs", {
+		message: req.session.message
+	})
 })
 
 //update -- to update own profile
+router.put("/:id", async (req, res, next) => {
+	// console.log("update route working")
+	try {
+		//if password to confirm changes matches user password, allow changes
+		if(bcrypt.compareSync(req.body.password, req.session.user.password)) {
+		const updatedUser = await User.findById(req.params.id)
+			//if entered username is different than current username...
+			if(req.body.newName !== req.session.user.name) {
+				const duplicateUsername = await User.findOne({name: req.body.newName})
+				//...and if entered username is not a duplicate, change username
+				if(!duplicateUsername) {
+					console.log(req.session.user, " <-- user before name change");
+					updatedUser.name = req.body.newName
+					req.session.user = updatedUser
+					// console.log(updatedUser, " <-- updatedUser");
+					console.log(req.session.user, " <-- user after name change");
+				} else {
+					req.session.message = "Username taken"
+				}
+			}
+			//change password
+			if (!bcrypt.compareSync(req.body.newPassword, req.session.user.password) && req.body.newPassword !== "") {
+				const newPassword = bcrypt.hashSync(req.body.newPassword, bcrypt.genSaltSync(10))
+				console.log(updatedUser, " <-- updated user prior to pw change");
+				updatedUser.password = newPassword
+				console.log(updatedUser, " <-- updated user after pw change");
+			}
+			// 
+			//replace avatar
+			
+			// console.log("password matches!");
+			req.session.message = "Profile updated!"
+			res.redirect("/user/" + req.session.user._id)
+
+		//if password to confirm changes does not match, do not change
+			updatedUser.save()
+		} else {
+			// console.log("password does not match");
+			req.session.message = "Wrong password - could not update profile"
+			res.redirect("/user/" + req.session.user._id)
+		}
+	} catch(err) {
+		next(err)
+	}
+})
 
 //delete -- to delete own account
 
