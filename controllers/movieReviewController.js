@@ -21,22 +21,15 @@ router.use(requireAuth)
       console.dir(response.text); // <-- this appears to be the JSON we want
     
       const dataAsObj = JSON.parse(response.text)
-     //  console.dir(dataAsObj)
-
-     //  const title = dataAsObj.Title
-     //  const year = dataAsObj.Year
-     //  const genre = dataAsObj.Genre
-	    // const poster = dataAsObj.Poster
-	    // const plot = dataAsObj.Plot
-     //  console.log(" movie show route");
-      //res.redirect("movies/")
+    
       
       res.render('movies/show.ejs', {
         title: dataAsObj.Title,
         year: dataAsObj.Year,
         genre: dataAsObj.Genre,
         poster: dataAsObj.Poster,
-        plot: dataAsObj.Plot
+        plot: dataAsObj.Plot,
+        imdbID: dataAsObj.imdbID
       })
     }
   })
@@ -50,7 +43,7 @@ router.get("/movieIndex", (req,res,next) => {
 	res.render("movies/index.ejs")
 })
 
-router.get("/create", (req,res,next) => {
+router.get("/:id/create", (req,res,next) => {
 	res.render("reviews/new.ejs")
 })
 
