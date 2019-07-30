@@ -33,13 +33,13 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/user/<%=user._id%>">Profile</a>
-            <a class="dropdown-item" href="#">Edit Profile</a>
+            <a class="dropdown-item" href="/user/<%=user._id%>/edit">Edit Profile</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Logout</a>
+          <a class="nav-link" href="/user/logout" tabindex="-1" >Logout</a>
         </li>
       </ul>
     <% } %>
