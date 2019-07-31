@@ -3,7 +3,7 @@
     <h1>Movies</h1>
 
     <%movies.forEach(movie => { %>
-        <img src="<%= movie.poster %>">
+        <a href="/movies/<%=movie.imdbID%>"><img src="<%= movie.poster %>"></a>
     <% }) %>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
