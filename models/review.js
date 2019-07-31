@@ -16,6 +16,10 @@ const Review = mongoose.model("Review", new mongoose.Schema({
 	rating: {
 		type: Number,
 		// required: true
+	},
+	timestamp: {
+		type: Date,
+		default: Date.now
 	}
 }))
 

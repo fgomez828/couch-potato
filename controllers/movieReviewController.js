@@ -71,24 +71,17 @@ router.get("/:imdbID", async (req,res,next) => {
 	try {
 		const foundMovie = await Movie.findOne({imdbID: req.params.imdbID})
 		// console.log(foundMovie.title);
-		if(foundMovie) {
-			const allReviews = await Review.find({imdbID: foundMovie.imdbID})
-			console.log(allReviews, " <-- allReviews");
-			res.render("movies/show.ejs", {
-		 		title: foundMovie.title,
-		 		poster: foundMovie.poster,
-		 		year: foundMovie.year,
-		 		genre: foundMovie.genre,
-		 		plot: foundMovie.plot,
-		 		imdbID: foundMovie.imdbID,
-		 		reviews: allReviews
-			})
-		} else {
-			console.log("YOOOOO");
-			res.render("movies/show.ejs", {
-				reviews: []
-			})
-		}
+		const allReviews = await Review.find({imdbID: foundMovie.imdbID}).populate("userId").sort("-timestamp")
+		console.log(allReviews, " <-- allReviews");
+		res.render("movies/show.ejs", {
+	 		title: foundMovie.title,
+	 		poster: foundMovie.poster,
+	 		year: foundMovie.year,
+	 		genre: foundMovie.genre,
+	 		plot: foundMovie.plot,
+	 		imdbID: foundMovie.imdbID,
+	 		reviews: allReviews
+		})
 	} catch(err) {
 		next(err)
 	}

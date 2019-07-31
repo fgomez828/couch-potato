@@ -15,7 +15,9 @@
     </form>
 
     <% for (let i = 0; i < reviews.length; i++) { %>
+        <h6><%=reviews[i].userId.name%></h6>
         <p><%= reviews[i].content %></p>
+        <small><%= reviews[i].timestamp.toLocaleString() %></small><br/>
     <% } %>
 
     <!-- Optional JavaScript -->
