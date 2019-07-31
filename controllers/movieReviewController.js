@@ -3,16 +3,17 @@ const router = express.Router()
 const requireAuth = require("../lib/requireAuth.js")
 const superagent = require('superagent')
 const Movie = require("../models/movie")
+const Review = require("../models/review")
 require('isomorphic-fetch')
 require('es6-promise')
 
 router.use(requireAuth)
 
-//show
+//show --- search results page
  router.get('/', (req, res, next) => {
   // console.log(req.query.title)
-  const url = 'http://www.omdbapi.com/?t='+ req.query.title + '&apikey='+ process.env.API_KEY
-  //console.log(url);
+  const url = 'http://www.omdbapi.com/?apikey='+ process.env.API_KEY + '&t='+ req.query.title
+  console.log(url);
   //use superagent to request api data
   superagent
   .get(url)
@@ -24,14 +25,14 @@ router.use(requireAuth)
     
       const dataAsObj = JSON.parse(response.text)
     
-      
       res.render('movies/show.ejs', {
         title: dataAsObj.Title,
         year: dataAsObj.Year,
         genre: dataAsObj.Genre,
         poster: dataAsObj.Poster,
         plot: dataAsObj.Plot,
-        imdbID: dataAsObj.imdbID
+        imdbID: dataAsObj.imdbID,
+        reviews: []
       })
     }
   })
@@ -59,49 +60,77 @@ router.get("/edit", (req,res,next) => {
 	res.render("reviews/edit.ejs")
 })
 
-//show single movie page
-router.get("/:id", (req,res,next) => {
-  //find all reviews with this movie's imdbID
-  res.render("movies/show.ejs")
+//show single movie page -- assumes movie already reviewed
+router.get("/:imdbID", async (req,res,next) => {
+	//turn movie name to movie id
+	//find all reviews with this movie's imdbID
+	try {
+		const foundMovie = await Movie.findOne({imdbID: req.params.imdbID})
+		// console.log(foundMovie.title);
+		if(foundMovie) {
+			const allReviews = await Review.find({imdbID: foundMovie.imdbID})
+			console.log(allReviews, " <-- allReviews");
+			res.render("movies/show.ejs", {
+		 		title: foundMovie.title,
+		 		poster: foundMovie.poster,
+		 		year: foundMovie.year,
+		 		genre: foundMovie.genre,
+		 		plot: foundMovie.plot,
+		 		imdbID: foundMovie.imdbID,
+		 		reviews: allReviews
+			})
+		} else {
+			console.log("YOOOOO");
+			res.render("movies/show.ejs", {
+				reviews: []
+			})
+		}
+	} catch(err) {
+		next(err)
+	}
 })
 
 //post review to movie
-router.post("/:id", async (req,res,next) => {
+router.post("/:imdbID", async (req,res,next) => {
   //add movie to database when first review is created
   try {
-    const url = await fetch('http://www.omdbapi.com/?i='+ req.params.id + '&apikey='+ process.env.API_KEY)
-    // superagent
-    // .get(url)
-    // .end( async (error, response) => {
-    //   if(error) next(error);
-      // else {
-        //console.dir(response) // <-- format of this response will vary WIDELY depending on the API you're working with
-        //console.dir(response.text); // <-- this appears to be the JSON we want
-      
+  	//if movie does not exist, create movie in db
+  	const foundMovie = await Movie.findOne({imdbID: req.params.imdbID})
+  	let reviewedMovie
+  	if(!foundMovie) {
+	    const url = await fetch('http://www.omdbapi.com/?i='+ req.params.imdbID + '&apikey='+ process.env.API_KEY)	      
         const dataAsObj = await url.json()
-        console.log(dataAsObj.Genre);
+        console.log(dataAsObj);
         console.log( "about to create movie");
-        const newMovie ={
-          title: dataAsObj.Title, 
-          year: dataAsObj.Year,
-          genre: dataAsObj.Genre,
-          poster: dataAsObj.Poster,
-          plot: dataAsObj.Plot
+        const newMovie = {
+        	title: dataAsObj.Title, 
+        	year: dataAsObj.Year,
+        	genre: dataAsObj.Genre,
+        	poster: dataAsObj.Poster,
+        	plot: dataAsObj.Plot,
+        	imdbID: dataAsObj.imdbID
         }
-        const reviewedMovie = await Movie.create(
-          newMovie
-        )
-
-        reviewedMovie.save()
-      // }
-    // }) 
-    console.log("check mongodb") 
-
-
-    //assign database id to review
-
-    //assign user id to review
+        reviewedMovie = await Movie.create(newMovie)
+	        // console.log("check mongodb") 
+  	}
+    //if movie is found, just relate review to movie and user:
+    //create review
+    // console.log(req.body.content, " <-- review body");
+    // console.log(foundMovie, " <-- found movie");
+    // console.log(newMovie, " < -- new movie");
+    const review = {
+    	content: req.body.content,
+    	userId: req.session.userId,
+    	imdbID: req.params.imdbID,
+    	movieId: foundMovie ? foundMovie._id : reviewedMovie._id
+    }
+    console.log(review);
+    const newReview = await Review.create(review)
+    /// push into either foundMoive
     //redirect to show page
+    // console.log("check mongo for new review");
+    // console.log(newReview, " <-- new review");
+    res.redirect("/movies/" + req.params.imdbID)
 
   } catch(error) {
     next(error)

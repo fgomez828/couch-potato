@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 
-const Review = new mongoose.model("Review", mongoose.Schema({
+const Review = mongoose.model("Review", new mongoose.Schema({
 	content: {
 		type: String,
 	},
@@ -8,13 +8,14 @@ const Review = new mongoose.model("Review", mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "User"
 	},
+	imdbID: String, // imdb
 	movieId: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: "Movie"
 	},
 	rating: {
 		type: Number,
-		required: true
+		// required: true
 	}
 }))
 
