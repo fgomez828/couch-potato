@@ -1,6 +1,11 @@
-  	<%include ../partials/header.ejs%>
-    <h1>Feed</h1>
-
+    <%include ../partials/header.ejs%>
+    <h1>Recent Reviews</h1>
+    <% reviews.forEach(review => { %>
+      <img src="<%=review.movieId.poster%>"><br/>
+      <h6><%=review.userId.name%></h6><br/>
+      <p><%=review.content%></p><br/>
+      <small><%=review.timestamp.toLocaleString()%></small><br/>
+    <% }) %>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

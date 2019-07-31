@@ -39,8 +39,11 @@ router.use(requireAuth)
 })
 
 //home
-router.get("/feed", (req, res, next) => {
-	res.render("reviews/feed.ejs")
+router.get("/feed", async (req, res, next) => {
+	const allReviews = await Review.find().populate("userId").populate("movieId").sort("-timestamp")
+	res.render("reviews/feed.ejs", {
+		reviews: allReviews,
+	})
 })
 
 //show all movies
