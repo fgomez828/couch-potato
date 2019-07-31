@@ -44,8 +44,12 @@ router.get("/feed", (req, res, next) => {
 })
 
 //show all movies
-router.get("/movieIndex", (req,res,next) => {
-	res.render("movies/index.ejs")
+router.get("/index", async (req,res,next) => {
+	//find all movies in db
+	const reviewedMovies = await Movie.find({})
+	res.render("movies/index.ejs", {
+		movies: reviewedMovies
+	})
 })
 
 //new review

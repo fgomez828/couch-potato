@@ -15,7 +15,7 @@ require("./db/db")
 app.use(bodyParser.urlencoded({extended:false}))
 app.use(methodOverride("_method"))
 app.use(session({
-	secret: SESSION_SECRET,
+	secret: process.env.SESSION_SECRET,
 	resave: false,
 	saveUninitialized: false
 }))
