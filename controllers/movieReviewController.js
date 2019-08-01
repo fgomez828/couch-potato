@@ -18,7 +18,11 @@ router.use(requireAuth)
   superagent
   .get(url)
   .end((error, response) => {
-    if(error) next("../views/movies/404");
+    if(error) {
+      res.render("404.ejs", {
+        error: error
+      })
+    } 
     else {
       // console.dir(response) // <-- format of this response will vary WIDELY depending on the API you're working with
       // console.dir(response.text); // <-- this appears to be the JSON we want
@@ -32,7 +36,8 @@ router.use(requireAuth)
         poster: dataAsObj.Poster,
         plot: dataAsObj.Plot,
         imdbID: dataAsObj.imdbID,
-        reviews: []
+        reviews: [],
+        avg: "Not yet Rated"
       })
     }
   })
