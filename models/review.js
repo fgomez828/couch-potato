@@ -15,7 +15,7 @@ const Review = mongoose.model("Review", new mongoose.Schema({
 	},
 	rating: {
 		type: Number,
-		// required: true
+		required: true
 	},
 	timestamp: {
 		type: Date,

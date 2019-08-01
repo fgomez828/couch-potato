@@ -1,14 +1,23 @@
 <%include ../partials/header.ejs%>
 
 <h1>Recent Reviews</h1>
+
 <% reviews.forEach(review => { %>
   <div class="feed-review">
+
   	<img src="<%=review.movieId.poster%>">
   	<h6>
-  		<img width=30px height=30px src="https://fasab.files.wordpress.com/2013/03/potato-pete.jpg">
-  		<a href=/user/:id><%=review.userId.name%></a> said:
+
+  		<img class="avatar" src="https://fasab.files.wordpress.com/2013/03/potato-pete.jpg">
+  		<%=review.userId.name%> said:
+
   	</h6>
+
   	<p><%=review.content%></p>
+  	<% for(let i = 0; i < review.rating; i++) {%>
+  		<img src="http://pngimg.com/uploads/potato/potato_PNG7078.png" id="rating">
+  	<% } %>
+  	<br/>
   	<small><%=review.timestamp.toLocaleString()%></small>
   </div>
   

@@ -84,7 +84,26 @@ p, a, small, form {
 	margin: 0 250px;
 }
 
+
 a, h6 {
 	font-family: "Luckiest Guy", cursive;
+}
+
+.avatar {
+	height: 30px;
+	width: 30px;
+	margin-top: 0 !important;
+}
+
+#rating {
+	display: inline-block;
+	max-height: 30px;
+	margin: 0 auto;
+}
+
+.movie-show .total-rating {
+	margin-left: 100px;
+	margin-botton: 0;
+
 }
 

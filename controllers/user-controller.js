@@ -7,6 +7,7 @@ const Movie = require("../models/movie")
 const Review = require("../models/review")
 
 const User = require("../models/user")
+const Review = require("../models/review")
 
 router.post('/register.ejs', upload.single('photo'), (req, res, next) => {
   console.log("here is req.file: ");
@@ -165,7 +166,8 @@ router.put("/:id", async (req, res, next) => {
 //delete -- to delete own account
 router.delete("/:id", async (req, res, next) => {
 	try {
-		await User.findByIdAndDelete(req.params.id)
+		const thisUser = await User.findByIdAndDelete(req.params.id)
+		const userReviews = await Review.deleteMany({userId: thisUser._id})
 		res.redirect("/user/register")
 	} catch(err) {
 		res.redirect("/movies/404")

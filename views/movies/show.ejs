@@ -1,6 +1,7 @@
 
 <%include ../partials/header.ejs%>
 <h1><%= title %></h1>
+<h2>Average Potato Rating: <%=avg%></h2>
 
 <div class="movie-show">
 	<img src="<%=poster%>">
@@ -12,14 +13,22 @@
 		  <button class="btn btn-success" value="submit">Write a Review!</button>
 		</form>
 
-		<% for (let i = 0; i < reviews.length; i++) { %>
+		<% reviews.forEach(review => { %>
 			<h6>
-				<img width=30px height=30px src="https://fasab.files.wordpress.com/2013/03/potato-pete.jpg">
-				<a href="/user/:id"><%=reviews[i].userId.name%></a> said:
+
+				<img class="avatar" src="https://fasab.files.wordpress.com/2013/03/potato-pete.jpg">
+				<%=review.userId.name%> said:
+>>>>>>> 06d542e61244b7476ceabe97070e37214f941397
 			</h6>
-		    <p><%= reviews[i].content %></p>
-		    <small><%= reviews[i].timestamp.toLocaleString() %></small><br/>
-		<% } %>
+		    <p><%= review.content %></p>
+		    <div class="total-rating">
+			    <% for(let i = 0; i < review.rating; i++) {%>
+	  				<img src="http://pngimg.com/uploads/potato/potato_PNG7078.png" id="rating">
+	  			<% } %>
+		    </div>
+		    <small><%= review.timestamp.toLocaleString() %></small><br/>
+		<% }) %>
+
 	</div>
 </div>
 
