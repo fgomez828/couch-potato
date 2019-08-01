@@ -83,3 +83,9 @@ p, a, small, form {
 	text-align: left;
 	margin: 0 250px;
 }
+
+.avatar {
+	height: 30px;
+	width: 30px;
+	margin-top: 0 !important;
+}
