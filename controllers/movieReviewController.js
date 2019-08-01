@@ -62,6 +62,11 @@ router.get("/:id/create", async (req,res,next) => {
   })
 })
 
+//404 page
+router.get("/404", (req,res,next) => {
+  res.render("404.ejs")
+})
+
 //edit review
 router.get("/edit", (req,res,next) => {
 	res.render("reviews/edit.ejs")
