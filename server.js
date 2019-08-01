@@ -43,6 +43,11 @@ app.use("/user", userController)
 const movieReviewController = require("./controllers/movieReviewController")
 app.use("/movies", movieReviewController)
 
+
+app.get('*', (req, res) => {
+	res.render('404.ejs')
+})
+
 app.listen(PORT, () => {
 	console.log("listening on port ", PORT);
 })
