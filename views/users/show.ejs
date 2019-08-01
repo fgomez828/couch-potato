@@ -4,6 +4,16 @@
 <div class="user"> 
 	<img width=30px height=30px src="https://fasab.files.wordpress.com/2013/03/potato-pete.jpg"> 
 	<%=user.name%>
+
+	<% for (let i = 0; i < reviews.length; i++) { %>
+			<h6>
+				<img width=30px height=30px src="https://fasab.files.wordpress.com/2013/03/potato-pete.jpg">
+				<a href="/user/:id"><%=reviews[i].userId.name%></a> said:
+			</h6>
+		    <p><%= reviews[i].content %></p>
+		    <small><%= reviews[i].timestamp.toLocaleString() %></small><br/>
+		<% } %>
+	
 	<h3><%=message%></h3>
 	<a href="/movies/feed">Back to Feed</a>	
 </div>

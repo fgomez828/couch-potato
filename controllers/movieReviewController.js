@@ -80,7 +80,7 @@ router.get("/:imdbID", async (req,res,next) => {
 		const foundMovie = await Movie.findOne({imdbID: req.params.imdbID})
 		// console.log(foundMovie.title);
 		const allReviews = await Review.find({imdbID: foundMovie.imdbID}).populate("userId").sort("-timestamp")
-		console.log(allReviews, " <-- allReviews");
+		//console.log(allReviews, " <-- allReviews");
 		res.render("movies/show.ejs", {
 	 		title: foundMovie.title,
 	 		poster: foundMovie.poster,

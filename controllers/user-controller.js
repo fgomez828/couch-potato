@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs")
 const router = express.Router()
 const multer = require('multer')
 const upload = multer({dest: 'uploads/'})
+const Movie = require("../models/movie")
+const Review = require("../models/review")
 
 const User = require("../models/user")
 
@@ -94,10 +96,14 @@ router.get("/logout", (req, res, next) => {
 
 /**REST**/
 // show
-router.get("/:id", (req, res, next) => {
-	// console.log("hitting user show route");
+router.get("/:id", async (req, res, next) => {
+	const foundReviews = await Review.find({userId: req.params._id}).populate("movieId").sort("-timestamp")
+	console.log(userId," <--- userId");
+	console.log(movieId, "<--- movieId");
+	console.log(foundReviews, "<--- foundReviews");
 	res.render("users/show.ejs", {
-		message: req.session.message
+		message: req.session.message,
+		reviews: foundReviews
 	})
 })
 
