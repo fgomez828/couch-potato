@@ -6,7 +6,7 @@
   	<img src="<%=review.movieId.poster%>">
   	<h6>
   		<img width=30px height=30px src="https://fasab.files.wordpress.com/2013/03/potato-pete.jpg">
-  		<%=review.userId.name%> said:
+  		<a href=/user/:id><%=review.userId.name%></a> said:
   	</h6>
   	<p><%=review.content%></p>
   	<small><%=review.timestamp.toLocaleString()%></small>
@@ -15,3 +15,7 @@
 <% }) %>
 
 <%include ../partials/footer.ejs%>
+
+
+
+

@@ -43,7 +43,7 @@ router.post("/login", async (req, res, next) => {
 			res.redirect("/user")
 		}
 	} catch(err) {
-		next(err)
+		res.redirect("/movies/404")
 	}
 })
 
@@ -79,7 +79,7 @@ router.post("/new", async (req, res, next) => {
 			res.redirect("/user/register")
 		}
 	} catch(err) {
-		next(err)
+		res.redirect("/movies/404")
 	}
 })
 
@@ -152,7 +152,7 @@ router.put("/:id", async (req, res, next) => {
 			res.redirect("/user/" + req.session.user._id)
 		}
 	} catch(err) {
-		next(err)
+		res.redirect("/movies/404")
 	}
 })
 
@@ -162,7 +162,7 @@ router.delete("/:id", async (req, res, next) => {
 		await User.findByIdAndDelete(req.params.id)
 		res.redirect("/user/register")
 	} catch(err) {
-		next(err)
+		res.redirect("/movies/404")
 	}
 })
 

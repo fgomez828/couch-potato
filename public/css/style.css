@@ -83,3 +83,8 @@ p, a, small, form {
 	text-align: left;
 	margin: 0 250px;
 }
+
+a, h6 {
+	font-family: "Luckiest Guy", cursive;
+}
+

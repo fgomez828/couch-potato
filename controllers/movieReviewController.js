@@ -18,7 +18,7 @@ router.use(requireAuth)
   superagent
   .get(url)
   .end((error, response) => {
-    if(error) next(error);
+    if(error) next("../views/movies/404");
     else {
       // console.dir(response) // <-- format of this response will vary WIDELY depending on the API you're working with
       // console.dir(response.text); // <-- this appears to be the JSON we want
@@ -91,7 +91,7 @@ router.get("/:imdbID", async (req,res,next) => {
 	 		reviews: allReviews
 		})
 	} catch(err) {
-		next(err)
+		res.redirect("/movies/404")
 	}
 })
 
@@ -138,7 +138,7 @@ router.post("/:imdbID", async (req,res,next) => {
     res.redirect("/movies/" + req.params.imdbID)
 
   } catch(error) {
-    next(error)
+      res.redirect("/movies/404")
   }
 })
 
