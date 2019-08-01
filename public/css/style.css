@@ -90,8 +90,14 @@ p, a, small, form {
 	margin-top: 0 !important;
 }
 
-.feed-review #rating {
+#rating {
 	display: inline-block;
 	max-height: 30px;
-	margin-top: 0;
+	margin: 0 auto;
 }
+
+.movie-show .total-rating {
+	margin-left: 100px;
+	margin-botton: 0;
+}
+
