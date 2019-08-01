@@ -7,7 +7,7 @@ const Movie = require("../models/movie")
 const Review = require("../models/review")
 
 const User = require("../models/user")
-const Review = require("../models/review")
+
 
 router.post('/register.ejs', upload.single('photo'), (req, res, next) => {
   console.log("here is req.file: ");
