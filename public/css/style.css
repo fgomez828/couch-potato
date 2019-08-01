@@ -89,3 +89,9 @@ p, a, small, form {
 	width: 30px;
 	margin-top: 0 !important;
 }
+
+.feed-review #rating {
+	display: inline-block;
+	max-height: 30px;
+	margin-top: 0;
+}

@@ -122,7 +122,8 @@ router.post("/:imdbID", async (req,res,next) => {
     	content: req.body.content,
     	userId: req.session.userId,
     	imdbID: req.params.imdbID,
-    	movieId: foundMovie ? foundMovie._id : reviewedMovie._id
+    	movieId: foundMovie ? foundMovie._id : reviewedMovie._id,
+      rating: req.body.rating
     }
     console.log(review);
     const newReview = await Review.create(review)
