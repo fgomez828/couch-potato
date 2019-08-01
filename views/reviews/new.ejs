@@ -3,6 +3,7 @@
 <h1>Write a review!</h1>
 <form action="/movies/<%=imdbID%>" method="POST">
 	<textarea rows="5" cols="70" placeholder="Write your review here!" name="content"></textarea> <br>
+	<input type="number" min="1" max="5" name="rating">
 	<button class="btn btn-success" value="submit">Submit Review</button>
 </form>
 	
