@@ -1,19 +1,21 @@
 <%include ../partials/header.ejs%>
 
 <h1>Edit Your Profile</h1>
-<form action="/user/<%=user._id%>?_method=PUT" method="POST">
-	Username: <input type="text" name="newName" value="<%=user.name%>"/> <br/>
-	New Password: <input type="password" name="newPassword" /> <br/>
-	Avatar: <input type="file" name="newAvatar"> <br/>
+<div class="user">
+	<form action="/user/<%=user._id%>?_method=PUT" method="POST">
+		Username: <input type="text" name="newName" value="<%=user.name%>"/> <br/>
+		New Password: <input type="password" name="newPassword" /> <br/>
+		Avatar: <input type="file" name="newAvatar"> <br/>
+		<br/>
+		Confirm Password: <input type="password" name="password"><br/>
+		<button class="btn btn-success" value="submit">Update Account</button>
+	</form>
 	<br/>
-	Confirm Password: <input type="password" name="password"><br/>
-	<button>Update Account</button>
-</form>
-<br/>
-<br/>
-<form action="/user/<%=user._id%>?_method=DELETE" method="POST">
-	Or... <br/>
-	<button>Delete Account</button>
-</form>
+	<br/>
+	<form action="/user/<%=user._id%>?_method=DELETE" method="POST">
+		Or... <br/>
+		<button class="btn btn-success" value="submit">Delete Account</button>
+	</form>
+</div>
 
 <%include ../partials/footer.ejs%>

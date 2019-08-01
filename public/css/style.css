@@ -1,3 +1,85 @@
 body {
-	background-color:lightgrey;
+	text-align: center;
+	background-color: #FEFFE3;
+}
+
+body nav {
+	text-align: left;
+}
+
+img {
+	max-height: 200px;
+	margin: 10px auto;
+}
+
+footer {
+	margin-bottom: 0;
+}
+
+a img {
+	max-height: 350px;
+	margin: 20px;
+}
+
+h2, h3, h4, h5, h6 {
+	font-family: "Luckiest Guy", cursive;
+	color: #343A40;
+}
+
+h1 {
+	font-family: "Luckiest Guy", cursive;
+	margin-top: 20px;
+	color: #28A645;
+
+}
+
+p, a, small, form {
+	font-family: "Roboto", sans-serif;
+}
+
+#logo {
+	font-family: "Luckiest Guy", cursive;
+}
+
+.movie-show img {
+	max-height: 400px;
+}
+
+.movie-show .text-left {
+	margin: 0 50px;
+}
+
+.movie-show h6, p, small {
+	margin: 0 100px;
+}
+
+.movie-show button {
+	margin-bottom: 25px;
+}
+
+.movie-show h6 {
+	margin-top: 15px;
+}
+
+.feed-review h6, p, small {
+	margin: 0 100px;
+}
+
+.feed-review h6 {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+.feed-review img {
+	margin-top: 40px;
+	margin-bottom: 0;
+}
+
+.feed-review h6 {
+	margin-top: 15px;
+}
+
+.user {
+	text-align: left;
+	margin: 0 250px;
 }

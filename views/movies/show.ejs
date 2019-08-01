@@ -1,23 +1,23 @@
 
 <%include ../partials/header.ejs%>
-<h1>Show Page</h1>
+<h1><%= title %></h1>
 
-<h2>Movie Title: <%= title %></h2>
+<div class="movie-show">
+	<img src="<%=poster%>">
+	<div class="text-left">
+		<h5>Released: <%= year %></h5>
+		<h5>Genre: <%= genre %></h5>
+		<h5>Plot: <%= plot %></h5>
+		<form action="/movies/<%=imdbID%>/create" method="GET">
+		  <button class="btn btn-success" value="submit">Write a Review!</button>
+		</form>
 
-<img src="<%=poster%>">
-
-<h3>Released: <%= year %></h3>
-<h3>Genre: <%= genre %></h3>
-<h3>Plot: <%= plot %></h3>
-
-<form action="/movies/<%=imdbID%>/create" method="GET">
-  <button>Write a Review!</button>
-</form>
-
-<% for (let i = 0; i < reviews.length; i++) { %>
-    <h6><%=reviews[i].userId.name%></h6>
-    <p><%= reviews[i].content %></p>
-    <small><%= reviews[i].timestamp.toLocaleString() %></small><br/>
-<% } %>
+		<% for (let i = 0; i < reviews.length; i++) { %>
+		    <h6><%=reviews[i].userId.name%> said:</h6>
+		    <p><%= reviews[i].content %></p>
+		    <small><%= reviews[i].timestamp.toLocaleString() %></small><br/>
+		<% } %>
+	</div>
+</div>
 
 <%include ../partials/footer.ejs%>

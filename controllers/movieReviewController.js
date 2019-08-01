@@ -13,7 +13,7 @@ router.use(requireAuth)
  router.get('/', (req, res, next) => {
   // console.log(req.query.title)
   const url = 'http://www.omdbapi.com/?apikey='+ process.env.API_KEY + '&t='+ req.query.title
-  console.log(url);
+  // console.log(url);
   //use superagent to request api data
   superagent
   .get(url)

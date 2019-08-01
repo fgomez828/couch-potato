@@ -1,8 +1,11 @@
 <%include ../partials/header.ejs%>
 
-<h1>User Show Page</h1>
-<%=user.name%>
-<h3><%=message%></h3>
-<a href="/movies/feed">Back to Feed</a>
+<h1>Your Account Information</h1>
+<div class="user">
+	<%=user.name%>
+	<h3><%=message%></h3>
+	<a href="/movies/feed">Back to Feed</a>	
+</div>
+
 
 <%include ../partials/footer.ejs%>

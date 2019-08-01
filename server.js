@@ -33,6 +33,7 @@ app.use((req, res, next) => {
 	}
 })
 
+app.use(express.static("public"))
 
 //controllers
 const userController = require("./controllers/user-controller")

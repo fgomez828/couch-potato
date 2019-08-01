@@ -2,10 +2,13 @@
 
 <h1>Recent Reviews</h1>
 <% reviews.forEach(review => { %>
-  <img src="<%=review.movieId.poster%>"><br/>
-  <h6><%=review.userId.name%></h6><br/>
-  <p><%=review.content%></p><br/>
-  <small><%=review.timestamp.toLocaleString()%></small><br/>
+  <div class="feed-review">
+  	<img src="<%=review.movieId.poster%>">
+  	<h6><%=review.userId.name%> says:</h6>
+  	<p><%=review.content%></p>
+  	<small><%=review.timestamp.toLocaleString()%></small>
+  </div>
+  
 <% }) %>
 
 <%include ../partials/footer.ejs%>
