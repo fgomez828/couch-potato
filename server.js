@@ -43,6 +43,9 @@ app.use("/user", userController)
 const movieReviewController = require("./controllers/movieReviewController")
 app.use("/movies", movieReviewController)
 
+app.get('/', (req,res,next) => {
+	res.redirect("/movies/feed")
+})
 
 app.get('*', (req, res) => {
 	res.render('404.ejs')
