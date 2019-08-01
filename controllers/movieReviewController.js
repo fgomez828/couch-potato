@@ -74,8 +74,17 @@ router.get("/:imdbID", async (req,res,next) => {
 	try {
 		const foundMovie = await Movie.findOne({imdbID: req.params.imdbID})
 		// console.log(foundMovie.title);
+    //find all reviews
 		const allReviews = await Review.find({imdbID: foundMovie.imdbID}).populate("userId").sort("-timestamp")
-		console.log(allReviews, " <-- allReviews");
+    //find average of ratings
+		const allRatings = allReviews.map(review => review.rating)
+    const ratingsTotal = allRatings.reduce((a, rating) => {
+      return a += rating
+    }, 0)
+    const avgRating = ratingsTotal / allRatings.length
+    // console.log(avgRating);
+    // console.log(allRatings, " <-- allRatings");
+    console.log(allReviews, " <-- allReviews");
 		res.render("movies/show.ejs", {
 	 		title: foundMovie.title,
 	 		poster: foundMovie.poster,
@@ -83,7 +92,8 @@ router.get("/:imdbID", async (req,res,next) => {
 	 		genre: foundMovie.genre,
 	 		plot: foundMovie.plot,
 	 		imdbID: foundMovie.imdbID,
-	 		reviews: allReviews
+	 		reviews: allReviews,
+      avg: avgRating
 		})
 	} catch(err) {
 		next(err)
