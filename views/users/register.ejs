@@ -16,7 +16,16 @@
 	<form action="/user/new" method="POST">
 		Username: <input type="text" name="name" /> <br/>
 		Password: <input type="password" name="password" /> <br/>
-		Avatar: <input type="file" name="avatar"> <br/>
+		Avatar: 
+		
+  		<form enctype="multipart/form-data" action="/register.ejs" method="POST">
+		    <br />
+		    <label>upload a photo</label> <br />
+		    <input type="file" name="photo"><br />
+		    <button>Add it!</button>
+		</form>
+
+
 		<button>Create Account</button>
 	</form>
 

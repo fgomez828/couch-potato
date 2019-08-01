@@ -10,10 +10,11 @@ const User = new mongoose.model("User", mongoose.Schema({
 		type: String,
 		required: true
 	},
-	avatar: {
-		type: Buffer,
-		data: String
+	img: {
+		data: Buffer,
+		contentType: String
 	}
 }))
 
 module.exports = User;
+

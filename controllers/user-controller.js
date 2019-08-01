@@ -1,9 +1,20 @@
 const express = require("express")
 const bcrypt = require("bcryptjs")
 const router = express.Router()
+const multer = require('multer')
+const upload = multer({dest: 'uploads/'})
 
 const User = require("../models/user")
 
+router.post('/register.ejs', upload.single('photo'), (req, res, next) => {
+  console.log("here is req.file: ");
+  console.log(req.file);
+  res.send('check terminal')
+})
+
+router.get('/register.ejs', (req,res,next) => {
+	console.log(req.file);
+})
 
 //index
 router.get("/", (req, res, next) => {
