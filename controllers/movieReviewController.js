@@ -54,6 +54,7 @@ router.get("/feed", async (req, res, next) => {
 	const allReviews = await Review.find().populate("userId").populate("movieId").sort("-timestamp")
 	res.render("reviews/feed.ejs", {
 		reviews: allReviews,
+
 	})
 })
 
@@ -116,7 +117,6 @@ router.get("/:imdbID", async (req,res,next) => {
 		})
 	} catch(err) {
     next(err)
-		res.redirect("/movies/404")
 	}
 })
 
@@ -164,7 +164,7 @@ router.post("/:imdbID", async (req,res,next) => {
     res.redirect("/movies/" + req.params.imdbID)
 
   } catch(error) {
-      res.redirect("/movies/404")
+      next(err)
   }
 })
 

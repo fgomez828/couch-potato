@@ -44,7 +44,7 @@ router.post("/login", async (req, res, next) => {
 			res.redirect("/user")
 		}
 	} catch(err) {
-		res.redirect("/movies/404")
+		next(err)
 	}
 })
 
@@ -80,7 +80,7 @@ router.post("/new", async (req, res, next) => {
 			res.redirect("/user/register")
 		}
 	} catch(err) {
-		res.redirect("/movies/404")
+		next(err)
 	}
 })
 
@@ -155,7 +155,7 @@ router.put("/:id", async (req, res, next) => {
 			res.redirect("/user/" + req.session.user._id)
 		}
 	} catch(err) {
-		res.redirect("/movies/404")
+		next(err)
 	}
 })
 
@@ -166,7 +166,7 @@ router.delete("/:id", async (req, res, next) => {
 		const userReviews = await Review.deleteMany({userId: thisUser._id})
 		res.redirect("/user/register")
 	} catch(err) {
-		res.redirect("/movies/404")
+		next(err)
 	}
 })
 

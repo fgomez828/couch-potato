@@ -5,7 +5,8 @@
 <% reviews.forEach(review => { %>
   <div class="feed-review">
 
-  	<img src="<%=review.movieId.poster%>">
+
+  	<a href="/movies/<%=review.imdbID%>"><img src="<%=review.movieId.poster%>"></a>
   	<h6>
 
   		<img class="avatar" src="https://fasab.files.wordpress.com/2013/03/potato-pete.jpg">
