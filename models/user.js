@@ -11,8 +11,8 @@ const User = new mongoose.model("User", mongoose.Schema({
 		required: true
 	},
 	img: {
-		data: Buffer,
-		contentType: String
+		data: String,
+		
 	}
 }))
 

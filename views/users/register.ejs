@@ -5,17 +5,17 @@
 	<form action="/user/new" method="POST">
 		Username: <input type="text" name="name" /> <br/>
 		Password: <input type="password" name="password" /> <br/>
-		Avatar: 
-		
+		Your Default Avatar: <br> 
+		<img width=60px height=60px src="https://fasab.files.wordpress.com/2013/03/potato-pete.jpg">
+		<br>
   		<form enctype="multipart/form-data" action="/register.ejs" method="POST">
 		    <br />
-		    <label>upload a photo</label> <br />
+		    <label>Or, upload a photo:</label> <br />
 		    <input type="file" name="photo"><br />
-		    <button>Add it!</button>
+		    <br>
+		    <button>Create Account!</button>
 		</form>
 
-
-		<button>Create Account</button>
 	</form>
 
 

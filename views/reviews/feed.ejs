@@ -4,7 +4,10 @@
 <% reviews.forEach(review => { %>
   <div class="feed-review">
   	<img src="<%=review.movieId.poster%>">
-  	<h6><%=review.userId.name%> says:</h6>
+  	<h6>
+  		<img width=30px height=30px src="https://fasab.files.wordpress.com/2013/03/potato-pete.jpg">
+  		<%=review.userId.name%> said:
+  	</h6>
   	<p><%=review.content%></p>
   	<small><%=review.timestamp.toLocaleString()%></small>
   </div>
