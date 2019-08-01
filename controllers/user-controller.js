@@ -96,9 +96,7 @@ router.get("/logout", (req, res, next) => {
 /**REST**/
 // show
 router.get("/:id", async (req, res, next) => {
-	const foundReviews = await Review.find({userId: req.params._id}).populate("movieId").sort("-timestamp")
-	console.log(userId," <--- userId");
-	console.log(movieId, "<--- movieId");
+	const foundReviews = await Review.find({userId: req.params.id}).populate("movieId").sort("-timestamp")
 	console.log(foundReviews, "<--- foundReviews");
 	res.render("users/show.ejs", {
 		message: req.session.message,

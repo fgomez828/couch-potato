@@ -30,14 +30,13 @@ h1 {
 	font-family: "Luckiest Guy", cursive;
 	margin-top: 20px;
 	color: #28A645;
-
 }
 
 p, a, small, form {
 	font-family: "Roboto", sans-serif;
 }
 
-#logo {
+a, h6, #logo {
 	font-family: "Luckiest Guy", cursive;
 }
 
@@ -49,8 +48,8 @@ p, a, small, form {
 	margin: 0 50px;
 }
 
-.movie-show h6, p, small {
-	margin: 0 100px;
+.movie-show .total-rating {
+	margin: 0;
 }
 
 .movie-show button {
@@ -84,9 +83,8 @@ p, a, small, form {
 	margin: 0 250px;
 }
 
-
-a, h6 {
-	font-family: "Luckiest Guy", cursive;
+.user h6, p, small, .total-rating {
+	margin: 0;
 }
 
 .avatar {
@@ -99,11 +97,5 @@ a, h6 {
 	display: inline-block;
 	max-height: 30px;
 	margin: 0 auto;
-}
-
-.movie-show .total-rating {
-	margin-left: 100px;
-	margin-botton: 0;
-
 }
 
