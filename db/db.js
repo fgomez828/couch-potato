@@ -7,7 +7,7 @@ let connectionString
 if(process.env.NODE_ENV == "production") {
 	connectionString = process.env.DB_URL
 } else {
-	connectionString = 'mongodb://localhost/couch-potato'
+	connectionString = 'mongodb://mongo:27017/couch-potato'
 
 }
 
