@@ -7,6 +7,8 @@ let connectionString
 if(process.env.NODE_ENV == "production") {
 	connectionString = process.env.DB_URL
 } else {
+	// when containerizing, make sure to change host name
+	// from 'localhost' to 'mongo'
 	connectionString = 'mongodb://mongo:27017/couch-potato'
 
 }
